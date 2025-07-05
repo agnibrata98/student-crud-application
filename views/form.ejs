@@ -1,0 +1,29 @@
+<%- include('layouts/header') %>
+
+<h2 class="mb-4">Register Form</h2>
+<form action="/submit-form" method="POST" enctype="multipart/form-data">
+  <div class="mb-3">
+    <label for="fullName" class="form-label">Full Name</label>
+    <input type="text" class="form-control" name="fullName" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="email" class="form-label">Email address</label>
+    <input type="email" class="form-control" name="email" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="password" class="form-label">Password</label>
+    <input type="password" class="form-control" name="password" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="resume" class="form-label">Resume</label>
+    <input type="file" class="form-control" name="resume" accept="application/pdf" required>
+  </div>
+
+
+  <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+
+<%- include('layouts/footer') %>

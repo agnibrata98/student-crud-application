@@ -1,0 +1,41 @@
+<%- include('layouts/header') %>
+
+<h2 class="mb-4">Edit Student Details Form</h2>
+<form action="/update-form" method="POST">
+  <div class="mb-3">
+    <label for="fullName" class="form-label">Full Name</label>
+    <input type="text" class="form-control" name="firstName" value="<%=student.fullName%>" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="email" class="form-label">Email address</label>
+    <input type="email" class="form-control" name="email" value="<%=student.email%>" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="password" class="form-label">Password</label>
+    <input type="password" class="form-control" name="password" value="<%=student.password%>" required>
+  </div>
+
+  <div class="mb-3">
+    <label for="resume" class="form-label">Resume</label>
+    <input type="file" class="form-control" name="resume" accept="application/pdf">
+
+    <% if (student.resume) { %>
+        <div class="mt-2">
+        <a href="/uploads/<%= student.resume %>" target="_blank" class="btn btn-outline-secondary btn-sm">
+            View Existing Resume
+        </a>
+        <span class="text-muted ms-2">(<%= student.resume %>)</span>
+        </div>
+    <% } %>
+  </div>
+
+
+
+  <input type="hidden" name="id" value="<%=student.id%>">
+
+  <button type="submit" class="btn btn-primary">Update Data</button>
+</form>
+
+<%- include('layouts/footer') %>
