@@ -40,7 +40,7 @@ class AppController {
             const students = await StudentModel.find({
                 isDeleted: false
             });
-            console.log(students);
+            // console.log(students);
 
             res.render('list', {
                 title: 'List',
@@ -80,6 +80,7 @@ class AppController {
     async updateData(req, res) {
         try {
             const { id, fullName, email, password } = req.body;
+            const student = await StudentModel.findById(id);
             const updateObj = {
                 fullName,
                 email,
@@ -88,16 +89,13 @@ class AppController {
 
             // Only update resume if a new file was uploaded
             if (req.file) {
-                // Path to old resume
-                const oldResumePath = path.join(__dirname, '../public/uploads', existingStudent.resume);
+                const oldResumePath = path.join(__dirname, '../public/uploads', student.resume);
 
-                // Delete the old file if it exists
                 if (fs.existsSync(oldResumePath)) {
                     fs.unlinkSync(oldResumePath);
-                    console.log('Old resume deleted:', existingStudent.resume);
+                    console.log('Old resume deleted:', student.resume);
                 }
 
-                // Set new filename
                 updateObj.resume = req.file.filename;
             }
 
@@ -108,9 +106,6 @@ class AppController {
             throw error;
         }
     }
-
-
-
 
 
     async deleteData(req, res) {
