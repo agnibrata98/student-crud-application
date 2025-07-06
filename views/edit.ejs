@@ -1,7 +1,7 @@
 <%- include('layouts/header') %>
 
 <h2 class="mb-4">Edit Student Details Form</h2>
-<form action="/update-form" method="POST">
+<form action="/update-form" method="POST" enctype="multipart/form-data">
   <div class="mb-3">
     <label for="fullName" class="form-label">Full Name</label>
     <input type="text" class="form-control" name="fullName" value="<%=student.fullName%>" required>
